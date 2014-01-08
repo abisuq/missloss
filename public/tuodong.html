@@ -1,0 +1,85 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+<style>  
+    #rubbishBox  
+    {  
+        float:left;  
+        height:300px;  
+        width:400px;  
+        background-color: grey;   
+        -webkit-writing-mode: lr-tb;  
+        vertical-align: middle;  
+    }  
+    #dragBox  
+    {  
+        width: 504px;  
+        margin-left: 500px;  
+    }     
+    #dragBox div  
+    {  
+        width:500px;  
+        height: 30px;  
+        border:2px dashed grey;   
+        margin-bottom: 10px;      
+    }  
+    #dragBox div:hover  
+    {  
+        background-color: silver;  
+    }     
+</style>  
+</head>  
+<body>  
+<div id="rubbishBox">垃圾箱<br/></div>  
+<div id="dragBox">  
+    <div class="drag">a把我拖进垃圾箱吧</div>  
+    <div class="drag">b把我拖进垃圾箱吧</div>  
+    <div class="drag">c把我拖进垃圾箱吧</div>  
+    <div class="drag">d把我拖进垃圾箱吧</div>  
+    <div class="drag">e把我拖进垃圾箱吧</div>  
+</div>  
+<script type="text/javascript">  
+    document.ondragover = function(ev) { ev.preventDefault(); };  
+    var dragChild = null;  
+    var length = document.getElementById("dragBox").childNodes.length;  
+    var nodes = document.getElementById("dragBox").childNodes;  
+    for(var i=0;i<length;i++)  
+    {  
+        if(nodes[i].nodeType==1)  
+        {  
+            if(nodes[i].getAttribute("class")=="drag")  
+            {  
+                nodes[i].setAttribute("draggable","true");  
+                nodes[i].ondragstart = function(ev)  
+                {  
+                    var dt = ev.dataTransfer;  
+                    dt.effectAllowed = "move";  
+                    dt.setData("text/plain",this.innerText);  
+                    dragChild = this;  
+                };  
+                nodes[i].ondragend = function(ev)  
+                {  
+                    dragChild = null;  
+                };  
+            }     
+        }                         
+    }  
+  
+    var rubbishBox = document.getElementById("rubbishBox");  
+    rubbishBox.ondragover = function(ev){  
+        ev.dataTransfer.dropEffect = "move ";  
+        ev.preventDefault();  
+    };  
+    rubbishBox.ondragenter = function(){  
+        this.style.color = "white";  
+    };  
+    rubbishBox.ondrop = function(ev)  
+    {  
+        var dt = ev.dataTransfer;  
+        this.appendChild(document.createTextNode(dt.getData("text/plain")));  
+        this.appendChild(document.createElement("br"));  
+        document.getElementById("dragBox").removeChild(dragChild);  
+    }  
+</script>  
+</body>  
+</html> 

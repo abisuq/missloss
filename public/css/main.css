@@ -1,0 +1,237 @@
+@charset "utf-8";
+/* CSS Document */
+body{font:12px/1.5 'Cookie', cursive, "Microsoft YaHei",\5b8b\4f53;}
+/* CSS reset and CSS base */
+html{color:#000;background:#FFF;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,button,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var,optgroup{font-style:inherit;font-weight:inherit;}del,ins{text-decoration:none;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:baseline;}sub{vertical-align:baseline;}legend{color:#000;}input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit;}input,button,textarea,select{*font-size:100%;}
+a{text-decoration: none;color:#666;}
+input,textarea,button{outline: none;}
+.cf:before,.cf:after{display:table;content:"";}
+.cf:after{clear:both;}
+.cf{*zoom:1;}
+.pr{position:relative;}
+.pa{position:absolute;}
+
+
+/* Main CSS */
+html {
+	background: url(../img/missbg.jpg) no-repeat center bottom fixed #fbfbfb;
+}
+.sayit {
+	margin:0 auto;
+	width: 400px;
+	position: relative;
+}
+.words {
+	width:280px;
+	background: #fff;
+	padding: 18px 20px;
+	margin:20px auto 20px;
+	box-shadow: -3px -1px 10px 0px #ccc;
+	border-radius: 12px;
+}
+.words .textarea {
+	width:100%;
+	max-width:100%;
+	min-height: 48px;
+	line-height: 24px;
+	border:none;
+	color: #333;
+	outline: none;
+}
+.words:after {
+	content:'';
+	position:absolute;
+	border: 10px solid #fff;
+	border-color: #fff transparent transparent;
+	width:0;
+	height:0;
+	bottom: -20px;
+	left:50%;
+	margin:0 0 0 -10px;
+}
+.toggle {
+	font-size: 14px;
+	color: #333;
+	font-style: italic;
+	line-height: 14px;
+}
+.btn {
+	text-align: center;
+	border:none;
+	cursor: pointer;
+	background: none;
+}
+.sayit .words:hover {
+	-webkit-animation-name: glow;
+	-webkit-animation-duration: 5.20s;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-direction: alternate;
+	-webkit-animation-timing-function: ease-in-out;
+}
+.list {
+	padding:20px 20px 50px;
+	margin:20px 0 0 0;
+}
+.list li {
+	color: #666;
+	background: rgba(255, 255, 255, 0.94);
+	box-shadow: 1px 1px 6px 0 #ccc;
+	padding: 20px 20px 10px;
+	margin: 0 0 15px 0;
+	letter-spacing: 0.1em;
+}
+.list .post{margin-bottom: 15px;}
+.list .edit{top: 0px;right: -20px;}
+.list .date,.list .author {
+	float:right;
+	font-family: 'Cookie', cursive;
+	color: #999;
+}
+.list .author {
+	padding-left: 4px;
+	float: left;
+}
+.list .lor{
+	color: #FF9090;
+	vertical-align: top;
+	float: right;
+}
+.list li.pre{border: 2px dotted #FFEAEA;box-shadow: 3px 5px 15px 1px #bbb;position: relative;top: -2px;width: 320px;left: -3px;}
+.list li.pre div{outline: none;}
+.box {
+    font-family: 'Cookie', cursive;
+    top: -22px;
+    right: -200px;
+    opacity: 0.8;
+    min-width: 120px;
+}
+.boxUser {
+    padding: 10px;  background: #FF9090;  color: #FFF;  border-radius: 0 0 12px 12px;  box-shadow: -2px 0px 10px 0 #aaa;
+}
+.boxUser span {
+    line-height: 28px;
+
+    vertical-align: top;
+}
+.boxForm{
+    padding: 6px 10px;
+    background: #FF9090;
+    color: #FFF;
+    border-radius: 0 0 12px 12px;
+    box-shadow: -2px 0px 10px 0 #aaa;
+}
+.bfItem label {
+	width: 20px;
+    text-align: right;
+    display: inline-block;
+    margin-right: 6px;
+}
+.bfItem input {
+    border: none;
+    border-radius: 6px;
+    width: 60px;
+    padding: 2px 6px 2px 6px;
+    background: #FFFFFF;
+    color: #999;
+}
+.bfItem {
+    margin-bottom: 8px;
+}
+.bfItem button {
+    border: none;
+    text-align: center;
+    display: block;
+    padding: 5px;
+    color: #DF7F7F;
+    background: #FFFFFF;
+    border-radius: 18px 14px 2px 2px;
+    line-height: 12px;
+    font-size: 12px;
+    box-shadow: 0px -3px 13px 3px #D56E6E;
+    margin-bottom: -13px;
+    width: 112%;
+    position: relative;
+    cursor: pointer;
+    left: -6%;
+}
+.boxToggle{
+	width: 20px;
+	margin: 0 auto;
+	cursor: pointer;
+}
+.box .bt1{
+	width: 2px;
+	height: 16px;
+	background: #FF9090;
+	margin:0 auto;
+}
+.box .bt2{
+	width: 6px;
+	height: 6px;
+	background: #fff;
+	margin:0 auto;
+	border-radius: 10px;
+	border: 2px solid #ff9090;
+}
+.msg{border:none;background: none;}
+.pager .btn{
+	display: block;
+	width: 50px;
+	height: 25px;
+	border: 1px solid #eee;
+	line-height: 25px;
+	box-shadow: 1px 1px 1px 0 #ddd;
+	color: #666;
+	background: #fff;
+	float: right;
+	margin-left: 10px;
+}
+html.loss {
+	background-image: url(../img/lossbg.jpg);
+}
+
+.loss .list li.pre {
+    border: none;
+    box-shadow: 3px 2px 7px 1px #ccc;
+}
+
+.loss .list .lor {
+    color: #777;
+}
+.loss .boxForm {
+    background: #333;
+    box-shadow: -2px 0 4px 0 #000;
+}
+.loss .bfItem button {
+    color: #888;
+    box-shadow: 0px 5px 10px 0px #D1D1D1;
+}
+.loss .bt2 {
+    border: 2px solid #555;
+}
+.loss .bt1 {
+    background: #555;
+}
+.loss .boxUser {
+    background: #333;
+}	
+@-webkit-keyframes glow {
+	0% {
+	box-shadow: -4px -1px 10px 0px #ccc;
+	-webkit-transform: rotate(0.520deg);
+	-moz-transform: rotate(0.520deg);
+	transform: rotate(0.520deg);
+	}
+	100% {
+		box-shadow: 6px 8px 16px 0px #ccc;
+		border-radius: 6px 6px 9px 6px;
+		-webkit-transform: rotate(-0.520deg);
+		-moz-transform: rotate(-0.520deg);
+		transform: rotate(-0.520deg);
+	}
+}
+
+html::-webkit-scrollbar-track-piece{background:#fbfbfb;}
+html::-webkit-scrollbar{width:8px;}
+html::-webkit-scrollbar-thumb{background-color:#ccc;}
+html::-webkit-scrollbar-thumb:hover{background-color:#FF9090;}

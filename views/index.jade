@@ -1,0 +1,46 @@
+extends layout
+
+block body
+  div.sayit
+    div.words.pr.mb20
+      div.textarea(contentEditable='true', ng-keyup='checkKey()', ng-model='words', name='post', title='Type @ to the loss')
+    button.btn.submit.icon-heart(ng-click='submitPost()', title='发布')
+    input.msg(ng-click='test()',ng-model='msg',readOnly='true') 
+    ul.list
+      li.cf.pre(ng-show='words.length && !edit')
+        div.post(contentEditable='true', ng-model='words')
+        span.date(ng-show='username.length'){{time.minute}}
+        span.lor(ng-show='!(username.length)')
+            button.btn.icon-user(ng-click='box = true;reged = true', title='登入')
+            |  or  
+            button.btn.icon-user-add(ng-click='box = true;reged = false', title='注册')
+      li.cf.pr(ng-repeat='post in posts')
+        div.post{{post.post}}
+        span.date{{post.time.minute}} 
+        span.author(ng-show='post.share && !(username.length)'){{post.name}} 
+        div.edit.pa(ng-show='edit && username.length')
+          span.btn.icon-remove(ng-click='delete(post.id)', title='删除')
+      div.pager.cf
+        button.btn.nextpage(ng-show='!isLastPage', ng-click='page = page + 1') next
+        button.btn.prepage(ng-show='!isFirstPage', ng-click='page = page - 1') pre
+    div.box.pa
+      div(ng-show='box')
+        div.boxUser.cf(ng-show='username.length')
+          span Hi~ {{username}}
+          button.btn.icon-logout(ng-click='logout()', title='登出')
+        div.boxForm(ng-show='!(username.length)')
+          div.bfItem
+            label.icon-uniF7D7(for='username', title='用户名') 
+            input(type='text', name='username', ng-model='user.name')
+          div.bfItem
+            label.icon-key(for='password', title='密码') 
+            input(type='password', name='password', ng-model='user.password')
+          div.bfItem
+            button(ng-click='reg()', ng-show='!reged', title='注册') Join in
+            button(ng-click='login()', ng-show='reged', title='登入') Login
+      div.boxToggle(ng-click='box=!box')
+        div.bt1
+        div.bt2
+  script(src='js/angular/angular.min.js')
+  script(src='js/angular/angular-contentedit.js')
+  script(src='js/ctrl.js')
