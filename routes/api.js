@@ -14,7 +14,7 @@ exports.posts = function(req, res) {
 			total = 0;
 		}
 		var posts = [];
-		docs.forEach(function (post, i) {
+		docs.forEach(function (post) {
 			posts.push({
 				name: post.name,
 				time: post.time,
@@ -46,7 +46,7 @@ exports.addPost = function(req, res) {
 };
 exports.deletePost = function(req, res) {
 	var currentUser = req.session.user;
-	Post.delete(currentUser.name, req.params.id, function (err) {
+	Post.delete(currentUser.name, req.params.id, function(err) {
 		if (err) {
 			return	res.json({
 						msg: "不是你的东西你删他干吗？"
@@ -64,7 +64,7 @@ exports.reg = function(req, res) {
 		name: req.body.name,
 		password: password
 	});
-	User.get(newUser.name, function (err, user) {
+	User.get(newUser.name, function(err, user) {
 		if (user) {
 			return res.redirect('/');
 		} else {
@@ -85,7 +85,7 @@ exports.reg = function(req, res) {
 exports.login = function(req, res) {
 	var md5 = crypto.createHash('md5'),
  	    password = md5.update(req.body.password).digest('hex');
-    User.get(req.body.name, function (err, user) {
+    User.get(req.body.name, function(err, user) {
 		if (!user) {
 			return res.json({
 						msg: '用户不存在!'
@@ -106,11 +106,11 @@ exports.login = function(req, res) {
 exports.session = function(req, res) {
 	if(!req.session.user){
 		res.json({
-			username: null,
+			username: null
 		})
 	}else {
 		res.json({
-			username: req.session.user.name,
+			username: req.session.user.name
 		});
 	}
 };
