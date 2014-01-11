@@ -9,15 +9,15 @@ block body
     ul.list
       li.cf.pre(ng-show='words.length && !edit')
         div.post(contentEditable='true', ng-model='words')
-        span.date(ng-show='username.length'){{time.minute}}
+        span.date(ng-show='username.length') {{time.minute}}
         span.lor(ng-show='!(username.length)')
             button.btn.icon-user(ng-click='box = true;reged = true', title='登入')
             |  or  
             button.btn.icon-user-add(ng-click='box = true;reged = false', title='注册')
       li.cf.pr(ng-repeat='post in posts')
-        div.post{{post.post}}
-        span.date{{post.time.minute}} 
-        span.author(ng-show='post.share && !(username.length)'){{post.name}} 
+        div.post {{post.post}}
+        span.date {{post.time.minute}}
+        span.author(ng-show='post.share && !(username.length)') {{post.name}}
         div.edit.pa(ng-show='edit && username.length')
           span.btn.icon-remove(ng-click='delete(post.id)', title='删除')
       div.pager.cf
