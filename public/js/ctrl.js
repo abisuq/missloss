@@ -1,13 +1,13 @@
 var app = angular.module('ml', ['contenteditable']);
 var date = new Date();
 var time = {
-  date: date,
-  year : date.getFullYear(),
-  month : date.getFullYear() + "-" + (date.getMonth() + 1),
-  day : date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate(),
-  minute : date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + 
-  date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) 
-}
+    date: date,
+    year: date.getFullYear(),
+    month: date.getFullYear() + "-" + (date.getMonth() + 1),
+    day: date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate(),
+    minute: date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " +
+        date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
+};
 
 function IndexCtrl($scope, $http) {
     $scope.words = "";
@@ -22,7 +22,7 @@ function IndexCtrl($scope, $http) {
         $scope.edit = !!~$scope.words.indexOf('@edit');
     };
     var getSession = function() {
-        $http.get('/api/session').success(function(data, status, headers, config) {
+        $http.get('/api/session').success(function(data) {
             $scope.username = data.username;
             if($scope.username === data.username){
                 getPost();
@@ -31,13 +31,14 @@ function IndexCtrl($scope, $http) {
     };
     var getPost = function() {
         $scope.state = $scope.love? "miss":"loss";
-        $http.get('/api/posts/' + $scope.username + '/' + $scope.state + '/' + $scope.page).success(function(data, status, headers, config) {
+        $http.get('/api/posts/' + $scope.state + '/' + $scope.page).success(function(data) {
             $scope.posts = data.posts;
             $scope.total = data.total;
             $scope.isFirstPage = (($scope.page - 1) == 0);
             $scope.isLastPage = ((($scope.page - 1) * 10 + $scope.posts.length) == $scope.total);
         });
     };
+
     getSession();
     $scope.$watch('love', getPost);
     $scope.$watch('page', getPost);
@@ -48,7 +49,7 @@ function IndexCtrl($scope, $http) {
             $scope.form = {};
             var re=/(<([^>]+)>)/ig;
             $scope.form.post = $scope.words.replace(re,'').replace(/&amp;nbsp; /g, '').replace(/&nbsp;/g, '').replace(/@fuck/g, '').replace(/@unlock/g, '').replace(/@edit/g, '');
-            if ($scope.form.post.length) { 
+            if ($scope.form.post.length) {
                 $scope.form.state = ($scope.love ? "miss":"loss");
                 $scope.form.share = $scope.share;
                 $scope.words = ($scope.love ? "":"@fuck");
@@ -64,18 +65,19 @@ function IndexCtrl($scope, $http) {
 
     $scope.reg = function () {
         if ($scope.user.name && $scope.user.password) {
-            $http.post('/api/reg', $scope.user).success(function(){
+            $http.post('/api/reg', $scope.user).success(function(data){
+                $scope.msg = data.msg;
                 getSession();
-            }); 
-        }     
+            });
+        }
     };
     $scope.login = function () {
         if ($scope.user.name && $scope.user.password) {
             $http.post('/api/login', $scope.user).success(function(data){
                 $scope.msg = data.msg;
                 getSession();
-            }); 
-        }     
+            });
+        }
     };
     $scope.logout = function () {
         $scope.reged = true;
@@ -84,18 +86,18 @@ function IndexCtrl($scope, $http) {
             $http.post('/api/logout').success(function(data){
                 $scope.msg = data.msg;
                 getSession();
-            }); 
-        }     
+            });
+        }
     };
     $scope.delete = function (id) {
         if ($scope.username) {
             $http.delete('/api/deletePost/' + id).success(function(data){
                 $scope.msg = data.msg;
                 getPost();
-            }); 
+            });
         }
     };
-};
+}
 
 
 
