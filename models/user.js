@@ -13,17 +13,17 @@ User.prototype.save = function(callback) {
       name: this.name,
       password: this.password
   };
-  mongodb.open(function (err, db) {
+  mongodb.acquire(function (err, db) {
     if (err) {
       return callback(err);
     }
     db.collection('users', function (err, collection) {
       if (err) {
-        mongodb.close();
+        mongodb.release(db);
         return callback(err);
       }
       collection.insert(user, {safe: true}, function (err, user) {
-        mongodb.close();
+        mongodb.release(db);
         callback(null, user[0]);
       });
     });
@@ -31,19 +31,19 @@ User.prototype.save = function(callback) {
 };
 //读取用户信息
 User.get = function(name, callback) {
-  mongodb.open(function (err, db) {
+  mongodb.acquire(function (err, db) {
     if (err) {
       return callback(err);
     }
     db.collection('users', function (err, collection) {
       if (err) {
-        mongodb.close();
+        mongodb.release(db);
         return callback(err);
       }
       collection.findOne({
         name: name
       }, function(err, user){
-        mongodb.close();
+        mongodb.release(db);
         if (user) {
           return callback(null, user);
         }

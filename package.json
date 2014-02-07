@@ -10,6 +10,7 @@
     "jade": "",
     "mongodb": "*",
     "connect-mongo": "*",
-    "connect-flash": "*"
+    "connect-flash": "*",
+    "generic-pool": "~2.0.4"
   }
 }
