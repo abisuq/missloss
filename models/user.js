@@ -13,6 +13,10 @@ User.prototype.save = function(callback) {
       name: this.name,
       password: this.password
   };
+  if(!require('../settings').allowRegister){
+    //不允许注册
+    return callback('Reg not allowed');
+  }
   mongodb.acquire(function (err, db) {
     if (err) {
       return callback(err);

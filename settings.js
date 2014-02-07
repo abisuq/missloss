@@ -6,4 +6,5 @@ module.exports = {
   poolSize: 150,
   poolMin: 10,
   poolIdleMs: 30000,
+  allowRegister: true,
 };
