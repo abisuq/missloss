@@ -42,7 +42,7 @@ body {
 .words .textarea {
     width:100%;
     max-width:100%;
-    min-height: 4em;
+    min-height: 2em;
     line-height: 2em;
     border:none;
     color: #333;
