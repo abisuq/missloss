@@ -112,7 +112,7 @@ body {
     vertical-align: top;
     float: right;
 }
-.list li.pre{border: 0.16666em dotted #FFEAEA;box-shadow: 0.25em 0.4em 1.25em 0.08333em #bbb;}
+.list li.pre{border: 0.2em dotted #FFEAEA;box-shadow: 0.25em 0.4em 1.25em 0.08333em #bbb;opacity: 0.7;background-color: #F0F0F0}
 .list li.pre div{outline: none;}
 .box {
     font-family: 'Cookie', cursive;
