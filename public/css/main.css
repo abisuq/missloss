@@ -10,6 +10,7 @@ input,textarea,button{outline: none;}
 .cf{*zoom:1;}
 .pr{position:relative;}
 .pa{position:absolute;}
+.pf{position:fixed;}
 
 /* mobile css */
 @media screen and (max-width: 1240px) {
@@ -70,6 +71,11 @@ body {
     border:none;
     cursor: pointer;
     background: none;
+}
+/*发布按钮向下移动*/
+.btn.icon-heart{
+    margin-top: 8px;
+    padding-right: 38px;
 }
 .wrap .words:hover {
     -webkit-animation-name: glow;
