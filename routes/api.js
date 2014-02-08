@@ -69,13 +69,15 @@ exports.reg = function(req, res) {
     User.get(newUser.name, function(err, user) {
         if (user) {
             return res.json({
-                msg: '用户已经注册!'
+                msg: '用户已经存在！',
             });
         } else {
             newUser.save(
                 function (err, user) {
                     if (err) {
-                        console.log("user.save失败");
+                        return res.json({
+                            msg: '本站暂不允许注册！',
+                        });
                     }
                     req.session.user = user;
                     res.json({

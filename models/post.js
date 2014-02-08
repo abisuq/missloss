@@ -26,19 +26,19 @@ Post.prototype.save = function(callback) {
       state: this.state,
       share: this.share
   };
-  mongodb.open(function (err, db) {
+  mongodb.acquire(function (err, db) {
     if (err) {
       return callback(err);
     }
     db.collection('posts', function (err, collection) {
       if (err) {
-        mongodb.close();
+        mongodb.release(db);
         return callback(err);
       }
       collection.insert(post, {
         safe: true
       }, function (err) {
-        mongodb.close();
+        mongodb.release(db);
         if (err) {
           return callback(err);
         }
@@ -50,13 +50,13 @@ Post.prototype.save = function(callback) {
 
 Post.getTen = function (name, state, page, callback) {
   //打开数据库
-  mongodb.open(function (err, db) {
+  mongodb.acquire(function (err, db) {
     if (err) {
       return callback(err);
     }
     db.collection('posts', function (err, collection) {
       if (err) {
-        mongodb.close();
+        mongodb.release(db);
         return callback(err);
       }
       var query = {};
@@ -73,7 +73,7 @@ Post.getTen = function (name, state, page, callback) {
         }).sort({
           time: -1
         }).toArray(function (err, docs) {
-          mongodb.close();
+          mongodb.release(db);
           if (err) {
             return callback(err);
           }
@@ -85,13 +85,13 @@ Post.getTen = function (name, state, page, callback) {
 };
 
 Post.delete = function(name, _id, callback) {
-  mongodb.open(function (err, db) {
+  mongodb.acquire(function (err, db) {
     if (err) {
       return callback(err);
     }
     db.collection('posts', function (err, collection) {
       if (err) {
-        mongodb.close();
+        mongodb.release(db);
         return callback(err);
       }
       collection.remove({
@@ -100,7 +100,7 @@ Post.delete = function(name, _id, callback) {
       }, {
           w: 1
       }, function (err) {
-        mongodb.close();
+        mongodb.release(db);
         if (err) {
           return callback(err);
         }

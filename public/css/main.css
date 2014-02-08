@@ -10,12 +10,13 @@ input,textarea,button{outline: none;}
 .cf{*zoom:1;}
 .pr{position:relative;}
 .pa{position:absolute;}
+.pf{position:fixed;}
 
 /* mobile css */
-@media screen and (max-width: 1240px) {
-    .list{margin:0.25em 0 0 0;}
+@media all and (max-width: 420px) {
+    ul.list{margin:0.25em 0 0 0;}
     body{font-size:100%;}
-    .wrap {width: 90%;}
+    div.wrap {width: 90%;}
 }
 /* main css */
 html{
@@ -42,7 +43,7 @@ body {
 .words .textarea {
     width:100%;
     max-width:100%;
-    min-height: 4em;
+    min-height: 2em;
     line-height: 2em;
     border:none;
     color: #333;
@@ -71,6 +72,11 @@ body {
     cursor: pointer;
     background: none;
 }
+/*发布按钮向下移动*/
+.btn.icon-heart{
+    margin-top: 8px;
+    padding-right: 38px;
+}
 .wrap .words:hover {
     -webkit-animation-name: glow;
     -webkit-animation-duration: 5.20s;
@@ -87,7 +93,7 @@ body {
     background: rgba(255, 255, 255, 0.94);
     box-shadow: 0.1em 0.1em 0.5em 0 #ccc;
     padding: 1.16666em 1.16666em 0.83333em;
-    margin: 0 0 1em 0;
+    margin: 1.5em 1.5em 0;
     letter-spacing: 0.05em;
 }
 .list .post{margin-bottom: 1.25em;}
@@ -106,7 +112,7 @@ body {
     vertical-align: top;
     float: right;
 }
-.list li.pre{border: 0.16666em dotted #FFEAEA;box-shadow: 0.25em 0.4em 1.25em 0.08333em #bbb;}
+.list li.pre{border: 0.2em dotted #FFEAEA;box-shadow: 0.25em 0.4em 1.25em 0.08333em #bbb;opacity: 0.7;background-color: #F0F0F0}
 .list li.pre div{outline: none;}
 .box {
     font-family: 'Cookie', cursive;
