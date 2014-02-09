@@ -1,7 +1,14 @@
 missloss
 ========
 
-一个单页应用，用于angular和node练手(angular,express,mongodb)
+一个单页应用，用于angular和node练手(angular,express,mongodb)，主要参考的教程
+
+1. [N-Blog](https://github.com/nswbmw/N-blog)
+2. [Writing an AngularJS App with an Express + Node.js Backend](http://briantford.com/blog/angular-express.html)
+
+在线demo: [miss&loss](https://missloss.com)
+
+本地运行：
 
 1. 安装node.js
 
